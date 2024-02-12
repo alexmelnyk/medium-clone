@@ -1,0 +1,26 @@
+.header {
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(189, 189, 189, 0.5);
+}
+
+.headerLeft,
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.writeStory {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #6b6b6b;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #000;
+  }
+}

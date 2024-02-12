@@ -9,12 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.15.7",
+    "@mui/material": "^5.15.6",
+    "@prisma/client": "^5.9.1",
+    "next": "14.1.0",
+    "next-auth": "^4.24.5",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.1.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
+    "@auth/prisma-adapter": "^1.3.3",
+    "@faker-js/faker": "^8.4.1",
     "eslint": "^8",
-    "eslint-config-next": "14.1.0"
+    "eslint-config-next": "14.1.0",
+    "faker": "^6.6.6",
+    "prisma": "^5.9.1",
+    "sass": "^1.70.0"
   }
 }

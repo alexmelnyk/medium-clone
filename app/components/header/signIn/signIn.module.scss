@@ -1,0 +1,25 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h5 {
+    margin-bottom: 20px;
+  }
+
+  .chip {
+    width: 300px;
+    margin-bottom: 10px;
+    position: relative;
+
+    .icon {
+      position: absolute;
+      top: 3px;
+      left: 0;
+    }
+  }
+
+  .caption {
+    text-align: center;
+  }
+}
