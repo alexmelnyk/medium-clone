@@ -8,10 +8,7 @@ import PostActions from "@/app/components/postActions/PostActions";
 import styles from "./feedPost.module.scss";
 
 export default function FeedPost({ post }) {
-  const user = {
-    avatar: post.avatar,
-    fullName: post.author,
-  };
+  const user = post.user;
   const createdAt = new Date(post.createdAt).toDateString();
 
   return (
@@ -24,7 +21,7 @@ export default function FeedPost({ post }) {
         <Stack direction="row" spacing={2} className={styles.postContent}>
           <Stack direction="column" spacing={2}>
             <Typography variant="h6">{post.title}</Typography>
-            <Typography variant="body1">{post.body}</Typography>
+            <Typography variant="body1">{post.content}</Typography>
           </Stack>
           <img src={post.coverImage} alt="" height={100} />
         </Stack>
