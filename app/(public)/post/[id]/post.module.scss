@@ -1,0 +1,24 @@
+.post {
+  margin-top: 0px;
+
+  .title,
+  .user {
+    margin-bottom: 10px;
+  }
+
+  .follow {
+    color: #1a8917;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #033801;
+    }
+  }
+
+  .postActions {
+    border-top: 1px solid rgb(242, 242, 242);
+    border-bottom: 1px solid rgb(242, 242, 242);
+    padding: 3px 0;
+  }
+}

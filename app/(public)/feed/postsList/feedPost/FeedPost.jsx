@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
@@ -10,6 +11,7 @@ import styles from "./feedPost.module.scss";
 export default function FeedPost({ post }) {
   const user = post.user;
   const createdAt = new Date(post.createdAt).toDateString();
+  const tags = ["React"];
 
   return (
     <Card>
@@ -20,13 +22,15 @@ export default function FeedPost({ post }) {
         </Stack>
         <Stack direction="row" spacing={2} className={styles.postContent}>
           <Stack direction="column" spacing={2}>
-            <Typography variant="h6">{post.title}</Typography>
+            <Link href={`/post/${post.id}`}>
+              <Typography variant="h6">{post.title}</Typography>
+            </Link>
             <Typography variant="body1">{post.content}</Typography>
           </Stack>
           <img src={post.coverImage} alt="" height={100} />
         </Stack>
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Tags tags={post.tags} />
+          <Tags tags={tags} />
           <PostActions />
         </Stack>
       </CardContent>
