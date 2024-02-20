@@ -7,7 +7,7 @@ export default function User({ user }) {
   const avatarPlaceholder = user.name[0];
 
   return (
-    <Link href="/">
+    <Link href={`/profile/${user.id}`}>
       <Stack direction="row" alignItems="center" spacing={1}>
         <Avatar sx={{ width: 24, height: 24 }} src={user.image}>
           {avatarPlaceholder}

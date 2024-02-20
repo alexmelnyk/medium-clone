@@ -7,7 +7,8 @@ const getFakePost = (userId) => {
   return {
     title: faker.lorem.sentence({ min: 4, max: 10 }),
     coverImage: faker.image.url(),
-    content: faker.lorem.paragraph(10),
+    content: faker.lorem.paragraphs(10),
+    createdAt: faker.date.past(),
     userId,
   };
 };
@@ -15,8 +16,8 @@ const getFakePost = (userId) => {
 const createUserWithPosts = async (postsCount = 10) => {
   const user = await prisma.user.create({
     data: {
-      name: "Will Smith",
-      email: "willSmith@google.com",
+      name: "John Snow",
+      email: "johnSnow@google.com",
       image: faker.image.avatar(),
     },
   });

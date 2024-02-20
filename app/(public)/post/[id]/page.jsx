@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import User from "@/app/components/user/User";
+import Tags from "@/app/components/tags/Tags";
 import PostActions from "@/app/components/postActions/PostActions";
 import styles from "./post.module.scss";
 
@@ -34,8 +35,20 @@ export default async function Post({ params }) {
                 Follow
               </Typography>
             </Stack>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" className={styles.postActions}>
-              <PostActions postType="full" />
+            <Stack direction="column" spacing={2}>
+              <Stack direction="row" alignItems="center" className={styles.postActions}>
+                <PostActions postType="full" />
+              </Stack>
+              <Stack className={styles.coverImage}>
+                <img src={post.coverImage} />
+              </Stack>
+              <Typography variant="body1" className={styles.postContent}>
+                {post.content}
+              </Typography>
+              <Tags tags={["React", "Programming", "Next"]} />
+              <Stack direction="row" alignItems="center" className={styles.postActions}>
+                <PostActions postType="full" />
+              </Stack>
             </Stack>
           </CardContent>
         </Card>
