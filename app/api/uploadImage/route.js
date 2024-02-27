@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile } from "fs/promises";
 import fs from "fs";
+import cuid from "cuid";
 
 export async function POST(req, res) {
   try {
@@ -13,7 +14,8 @@ export async function POST(req, res) {
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const filename = "ololo.jpg";
+    const extension = file.name.split(".").pop();
+    const filename = `${cuid()}.${extension}`;
     const dir = path.join(process.cwd(), "public/assets/");
 
     if (!fs.existsSync(dir)) {
@@ -21,9 +23,9 @@ export async function POST(req, res) {
     }
 
     await writeFile(dir + filename, buffer);
-    return NextResponse.json({ Message: "Success", status: 201 });
+    return NextResponse.json({ url: `${process.env.BASE_URL}/assets/${filename}` }, { status: 201 });
   } catch (error) {
     console.log("Error occured ", error);
-    return NextResponse.json({ Message: "Failed", status: 500 });
+    return NextResponse.json({ error }, { status: 500 });
   }
 }

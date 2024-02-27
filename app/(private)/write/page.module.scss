@@ -1,7 +1,17 @@
 .writePage {
-  margin-top: 20;
+  margin: 15px 0;
+}
+
+.title {
+  width: 100%;
+  font-size: 29px;
 }
 
 .fileUpload {
   margin-bottom: 20px;
+}
+
+.publish {
+  width: 150px;
+  align-self: flex-end;
 }

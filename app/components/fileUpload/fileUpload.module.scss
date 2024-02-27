@@ -7,14 +7,23 @@
   border: 3px dashed #eeeeee;
   background-color: #fafafa;
   color: #bdbdbd;
+  margin-bottom: 10px;
 }
 
 .preview {
   max-width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
+
+  .cancel {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 
   .img {
     max-width: 100%;
+    max-height: 350px;
   }
 }
