@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import User from "@/app/components/user/User";
 import Tags from "@/app/components/tags/Tags";
 import PostActions from "@/app/components/postActions/PostActions";
+import SanitizeHTML from "@/app/components/sanitizeHTML/SanitizeHTML";
 import styles from "./feedPost.module.scss";
 
 export default function FeedPost({ post }) {
@@ -20,12 +21,12 @@ export default function FeedPost({ post }) {
           <User user={user} />
           <Typography variant="caption">{createdAt}</Typography>
         </Stack>
-        <Stack direction="row" spacing={2} className={styles.postContent} justifyContent="space-between">
-          <Stack direction="column" spacing={2}>
+        <Stack direction="row" spacing={2} className={styles.postWrapper} justifyContent="space-between">
+          <Stack direction="column" spacing={1}>
             <Link href={`/post/${post.id}`}>
               <Typography variant="h6">{post.title}</Typography>
             </Link>
-            {post.content}
+            <SanitizeHTML className={styles.postContent} html={post.content} />
           </Stack>
           <img src={post.coverImage} alt="" height={100} />
         </Stack>

@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import User from "@/app/components/user/User";
 import Tags from "@/app/components/tags/Tags";
 import PostActions from "@/app/components/postActions/PostActions";
+import SanitizeHTML from "@/app/components/sanitizeHTML/SanitizeHTML";
 import styles from "./post.module.scss";
 
 const getPost = async (id) => {
@@ -42,9 +43,7 @@ export default async function Post({ params }) {
               <Stack className={styles.coverImage}>
                 <img src={post.coverImage} />
               </Stack>
-              <Typography variant="body1" className={styles.postContent}>
-                {post.content}
-              </Typography>
+              <SanitizeHTML className={styles.postContent} html={post.content} />
               <Tags tags={["React", "Programming", "Next"]} />
               <Stack direction="row" alignItems="center" className={styles.postActions}>
                 <PostActions postType="full" />
