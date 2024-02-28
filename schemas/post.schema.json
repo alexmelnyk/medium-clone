@@ -1,0 +1,30 @@
+{
+  "$id": "https://example.com/product.schema.json",
+  "title": "Post",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    }
+  },
+  "required": ["title", "content", "coverImage", "userId"],
+  "additionalProperties": false
+}
