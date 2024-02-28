@@ -14,18 +14,18 @@ export default function FeedPost({ post }) {
   const tags = ["React"];
 
   return (
-    <Card>
+    <Card className={styles.post}>
       <CardContent>
         <Stack direction="row" spacing={2} alignItems="center" className={styles.postHeader}>
           <User user={user} />
           <Typography variant="caption">{createdAt}</Typography>
         </Stack>
-        <Stack direction="row" spacing={2} className={styles.postContent}>
+        <Stack direction="row" spacing={2} className={styles.postContent} justifyContent="space-between">
           <Stack direction="column" spacing={2}>
             <Link href={`/post/${post.id}`}>
               <Typography variant="h6">{post.title}</Typography>
             </Link>
-            <Typography variant="body1">{post.content}</Typography>
+            {post.content}
           </Stack>
           <img src={post.coverImage} alt="" height={100} />
         </Stack>
