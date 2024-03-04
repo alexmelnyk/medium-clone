@@ -36,7 +36,7 @@ export async function POST(request) {
     const errors = jsonSchema.validate(body);
 
     if (errors.length) {
-      return NextResponse.json({ errors }, { status: 400 });
+      throw errors;
     }
 
     const user = await prisma.User.findUniqueOrThrow({
