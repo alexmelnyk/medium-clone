@@ -8,6 +8,7 @@ import Tags from "@/app/components/tags/Tags";
 import PostActions from "@/app/components/postActions/PostActions";
 import SanitizeHTML from "@/app/components/sanitizeHTML/SanitizeHTML";
 import styles from "./post.module.scss";
+import { getSession } from "@/lib/auth";
 
 const getPost = async (id) => {
   const res = await fetch(`${process.env.BASE_URL}/api/posts/${id}`, {
@@ -18,6 +19,8 @@ const getPost = async (id) => {
 };
 
 export default async function Post({ params }) {
+  const session = await getSession();
+  const user = (session && session.user) || null;
   const post = await getPost(params.id);
   const createdAt = new Date(post.createdAt).toDateString();
 
@@ -38,7 +41,7 @@ export default async function Post({ params }) {
             </Stack>
             <Stack direction="column" spacing={2}>
               <Stack direction="row" alignItems="center" className={styles.postActions}>
-                <PostActions postType="full" />
+                <PostActions postType="full" user={user} post={post} />
               </Stack>
               <Stack className={styles.coverImage}>
                 <img src={post.coverImage} />
@@ -46,7 +49,7 @@ export default async function Post({ params }) {
               <SanitizeHTML className={styles.postContent} html={post.content} />
               <Tags tags={["React", "Programming", "Next"]} />
               <Stack direction="row" alignItems="center" className={styles.postActions}>
-                <PostActions postType="full" />
+                <PostActions postType="full" user={user} post={post} />
               </Stack>
             </Stack>
           </CardContent>

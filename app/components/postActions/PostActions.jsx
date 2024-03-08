@@ -11,7 +11,7 @@ import LikePostAction from "./LikePostAction";
 import CommentPostAction from "./CommentPostAction";
 import styles from "./postActions.module.scss";
 
-export default function PostActions({ postType }) {
+export default function PostActions({ postType, post, user }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,7 +33,7 @@ export default function PostActions({ postType }) {
         {postType === "full" && (
           <Stack direction="row" spacing={1}>
             <LikePostAction />
-            <CommentPostAction />
+            <CommentPostAction user={user} post={post} />
           </Stack>
         )}
       </div>

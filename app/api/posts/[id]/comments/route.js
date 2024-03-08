@@ -3,6 +3,33 @@ import { Draft07 } from "json-schema-library";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
+export async function GET(request, { params }) {
+  try {
+    const comments = await prisma.$transaction(async (prisma) => {
+      const post = await prisma.Post.findUniqueOrThrow({
+        where: {
+          id: params.id,
+        },
+      });
+
+      const comments = await prisma.Comment.findMany({
+        where: {
+          postId: post.id,
+        },
+        include: {
+          user: true,
+        },
+      });
+
+      return comments;
+    });
+
+    return NextResponse.json({ comments }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+}
+
 export async function POST(request, { params }) {
   try {
     const body = await request.json();

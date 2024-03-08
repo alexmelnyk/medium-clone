@@ -1,0 +1,22 @@
+.writeComment {
+  padding: 10px;
+
+  .textArea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 14px;
+
+    &:focus,
+    &:focus-visible {
+      border: none;
+      outline: 0;
+    }
+  }
+
+  .respond {
+    width: 130px;
+    align-self: flex-end;
+    border-radius: 20px;
+  }
+}
