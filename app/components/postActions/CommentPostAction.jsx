@@ -11,7 +11,7 @@ export default function CommentPostAction({ user, post }) {
   return (
     <>
       <PostActionItem icon={<ChatBubbleOutlineOutlinedIcon size="small" />} count={34} onClick={setOpen} />
-      <Drawer open={open} anchor="right" onClose={() => setOpen(false)}>
+      <Drawer open={Boolean(open)} anchor="right" onClose={() => setOpen(false)}>
         <Comments user={user} post={post} />
       </Drawer>
     </>

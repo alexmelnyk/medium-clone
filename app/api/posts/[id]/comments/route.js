@@ -19,12 +19,15 @@ export async function GET(request, { params }) {
         include: {
           user: true,
         },
+        orderBy: {
+          createdAt: "desc",
+        },
       });
 
       return comments;
     });
 
-    return NextResponse.json({ comments }, { status: 200 });
+    return NextResponse.json(comments, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
@@ -64,7 +67,7 @@ export async function POST(request, { params }) {
       return comment;
     });
 
-    return NextResponse.json({ comment }, { status: 200 });
+    return NextResponse.json(comment, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
