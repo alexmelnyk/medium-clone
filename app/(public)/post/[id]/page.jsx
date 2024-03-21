@@ -14,14 +14,23 @@ const getPost = async (id) => {
   const res = await fetch(`${process.env.BASE_URL}/api/posts/${id}`, {
     cache: "no-store",
   });
-  const json = await res.json();
-  return json.post;
+
+  if (!res.ok) {
+    return null;
+  }
+
+  return await res.json();
 };
 
 export default async function Post({ params }) {
   const session = await getSession();
   const user = (session && session.user) || null;
   const post = await getPost(params.id);
+
+  if (!post) {
+    return null;
+  }
+
   const createdAt = new Date(post.createdAt).toDateString();
 
   return (

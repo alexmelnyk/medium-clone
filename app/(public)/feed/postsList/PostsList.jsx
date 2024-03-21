@@ -8,6 +8,11 @@ const getPosts = async (page) => {
   const res = await fetch(`${process.env.BASE_URL}/api/posts?page=${currentPage}`, {
     cache: "no-store",
   });
+
+  if (!res.ok) {
+    return { posts: [] };
+  }
+
   return await res.json();
 };
 

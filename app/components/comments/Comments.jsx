@@ -19,7 +19,12 @@ const getComments = async (postId) => {
   const res = await fetch(`/api/posts/${postId}/comments`, {
     cache: "no-store",
   });
-  return await res.json();
+
+  if (!res.ok) {
+    return [];
+  }
+
+  return res.json();
 };
 
 const saveComment = async (comment) => {
