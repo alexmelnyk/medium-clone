@@ -9,6 +9,11 @@ export async function GET(request, { params }) {
       },
       include: {
         user: true,
+        _count: {
+          select: {
+            comments: true,
+          },
+        },
       },
     });
 
