@@ -6,7 +6,7 @@ export default async function Feed({ searchParams }) {
   return (
     <Grid container spacing={2} justifyContent="space-evenly">
       <Grid item xs={7}>
-        <Streams />
+        <Streams activeTab={searchParams.stream} />
         <PostsList page={searchParams.page} />
       </Grid>
       <Grid item xs={3}>

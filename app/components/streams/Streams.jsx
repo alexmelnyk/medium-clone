@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import Link from "next/link";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -46,11 +45,7 @@ const streams = [
   },
 ];
 
-export default function Streams() {
-  const url = new URL(headers().get("x-url"));
-  const searchParams = url.searchParams;
-  const activeTab = searchParams.get("stream") || "all";
-
+export default function Streams({ activeTab }) {
   const getTab = (stream) => {
     const link = `/feed?stream=${stream.value}`;
     return <Tab value={stream.value} label={stream.label} key={stream.value} component={Link} href={link} />;

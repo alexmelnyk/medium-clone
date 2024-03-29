@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import Stack from "@mui/material/Stack";
 import FeedPost from "./feedPost/FeedPost";
 import FeedPagination from "./feedPagination/FeedPagination";
@@ -7,6 +8,7 @@ const getPosts = async (page) => {
   const currentPage = page || 1;
   const res = await fetch(`${process.env.BASE_URL}/api/posts?page=${currentPage}`, {
     cache: "no-store",
+    headers: headers(),
   });
 
   if (!res.ok) {
