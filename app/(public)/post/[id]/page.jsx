@@ -7,20 +7,9 @@ import User from "@/app/components/user/User";
 import Tags from "@/app/components/tags/Tags";
 import PostActions from "@/app/components/postActions/PostActions";
 import SanitizeHTML from "@/app/components/sanitizeHTML/SanitizeHTML";
-import styles from "./post.module.scss";
 import { getSession } from "@/lib/auth";
-
-const getPost = async (id) => {
-  const res = await fetch(`${process.env.BASE_URL}/api/posts/${id}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    return null;
-  }
-
-  return await res.json();
-};
+import { getPost } from "@/services/post";
+import styles from "./post.module.scss";
 
 export default async function Post({ params }) {
   const session = await getSession();
@@ -57,9 +46,6 @@ export default async function Post({ params }) {
               </Stack>
               <SanitizeHTML className={styles.postContent} html={post.content} />
               <Tags tags={["React", "Programming", "Next"]} />
-              <Stack direction="row" alignItems="center" className={styles.postActions}>
-                <PostActions postType="full" user={user} post={post} />
-              </Stack>
             </Stack>
           </CardContent>
         </Card>

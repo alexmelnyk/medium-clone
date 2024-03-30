@@ -1,18 +1,7 @@
 import Grid from "@mui/material/Grid";
 import ProfileHeader from "./profileHeader/Profileheader";
+import { getUser } from "@/services/user";
 import styles from "./profile.module.scss";
-
-const getUser = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/users/${id}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    return null;
-  }
-
-  return res.json();
-};
 
 export default async function Profile({ params }) {
   const user = await getUser(params.id);

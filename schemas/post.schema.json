@@ -25,6 +25,6 @@
       "type": "string"
     }
   },
-  "required": ["title", "content", "coverImage", "userId"],
+  "required": ["title", "content", "coverImage"],
   "additionalProperties": false
 }

@@ -3,9 +3,10 @@ import { SnackbarProvider, enqueueSnackbar } from "notistack";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Skeleton from "@mui/material/Skeleton";
+import { getComments, saveComment } from "@/services/comments";
 import WriteComment from "./writeComment/WriteComment";
-import styles from "./comments.module.scss";
 import CommentsList from "./commentsList/CommentsList";
+import styles from "./comments.module.scss";
 
 const showSnackBar = (variant, message) => {
   enqueueSnackbar(message, {
@@ -13,31 +14,6 @@ const showSnackBar = (variant, message) => {
     autoHideDuration: 4000,
     anchorOrigin: { vertical: "top", horizontal: "right" },
   });
-};
-
-const getComments = async (postId) => {
-  const res = await fetch(`/api/posts/${postId}/comments`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    return [];
-  }
-
-  return res.json();
-};
-
-const saveComment = async (comment) => {
-  const res = await fetch(`/api/posts/${comment.postId}/comments`, {
-    method: "POST",
-    body: JSON.stringify(comment),
-  });
-
-  if (!res.ok) {
-    return null;
-  }
-
-  return res.json();
 };
 
 export default function Comments({ user, post }) {
@@ -54,7 +30,6 @@ export default function Comments({ user, post }) {
   const handleCommentSave = async (content) => {
     const commentData = {
       postId: post.id,
-      userId: user.id,
       content,
     };
 

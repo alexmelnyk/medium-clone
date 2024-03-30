@@ -19,6 +19,6 @@
       "type": "string"
     }
   },
-  "required": ["content", "userId"],
+  "required": ["content"],
   "additionalProperties": false
 }

@@ -1,22 +1,8 @@
-import { headers } from "next/headers";
 import Stack from "@mui/material/Stack";
 import FeedPost from "./feedPost/FeedPost";
 import FeedPagination from "./feedPagination/FeedPagination";
+import { getPosts } from "@/services/post";
 import styles from "./postsList.module.scss";
-
-const getPosts = async (page) => {
-  const currentPage = page || 1;
-  const res = await fetch(`${process.env.BASE_URL}/api/posts?page=${currentPage}`, {
-    cache: "no-store",
-    headers: headers(),
-  });
-
-  if (!res.ok) {
-    return { posts: [] };
-  }
-
-  return await res.json();
-};
 
 export default async function PostsList({ page }) {
   const { posts, pagesCount } = await getPosts(page);

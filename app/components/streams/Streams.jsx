@@ -58,7 +58,7 @@ export default function Streams({ activeTab }) {
           <AddIcon />
         </IconButton>
       </Link>
-      <Tabs value={activeTab} variant="scrollable" scrollButtons className={styles.tabs}>
+      <Tabs value={activeTab || "all"} variant="scrollable" scrollButtons className={styles.tabs}>
         {streams.map((stream) => getTab(stream))}
       </Tabs>
     </Stack>

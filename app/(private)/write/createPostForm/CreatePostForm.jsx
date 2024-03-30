@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PublishIcon from "@mui/icons-material/Publish";
 import { Editor } from "@tinymce/tinymce-react";
+import { createPost } from "@/services/post";
 import styles from "./createPostForm.module.scss";
 
 const showSnackBar = (message, variant) => {
@@ -19,24 +20,7 @@ const showSnackBar = (message, variant) => {
   });
 };
 
-const uploadImage = async (image) => {
-  const formData = new FormData();
-  formData.append("file", image);
-
-  return await fetch("/api/uploadImage", {
-    method: "POST",
-    body: formData,
-  });
-};
-
-const createPost = async (post) => {
-  return await fetch("/api/posts", {
-    method: "POST",
-    body: JSON.stringify(post),
-  });
-};
-
-export default function CreatePostForm({ user }) {
+export default function CreatePostForm() {
   const router = useRouter();
   const [coverImage, setCoverImage] = useState(null);
   const [title, setTitle] = useState("");
@@ -46,25 +30,14 @@ export default function CreatePostForm({ user }) {
 
   const handlePublish = async () => {
     setLoading(true);
-    const imageRes = await uploadImage(coverImage);
 
-    if (!imageRes.ok) {
-      showSnackBar("Post is not saved!", "error");
-      setLoading(false);
-      return;
-    }
-
-    const image = await imageRes.json();
     const post = {
       title,
       content,
-      coverImage: image.url,
-      userId: user.id,
     };
+    const postRes = await createPost(coverImage, post);
 
-    const createPostRes = await createPost(post);
-
-    if (!createPostRes.ok) {
+    if (!postRes) {
       showSnackBar("Post is not saved!", "error");
       setLoading(false);
       return;

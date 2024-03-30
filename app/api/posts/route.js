@@ -34,6 +34,7 @@ export async function POST(request) {
     const body = await request.json();
     const jsonSchema = new Draft07(PostSchema);
     const errors = jsonSchema.validate(body);
+    const userId = request.headers.get("x-user-id");
 
     if (errors.length) {
       throw errors;
@@ -41,7 +42,7 @@ export async function POST(request) {
 
     const user = await prisma.User.findUniqueOrThrow({
       where: {
-        id: body.userId,
+        id: userId,
       },
     });
 
