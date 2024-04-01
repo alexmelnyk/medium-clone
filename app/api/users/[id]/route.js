@@ -7,6 +7,16 @@ export async function GET(request, { params }) {
       where: {
         id: params.id,
       },
+      include: {
+        following: true,
+        followedBy: true,
+        _count: {
+          select: {
+            following: true,
+            followedBy: true,
+          },
+        },
+      },
     });
 
     return NextResponse.json(user, { status: 200 });

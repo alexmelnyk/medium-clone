@@ -18,5 +18,5 @@ export default async function middleware(request, event) {
 }
 
 export const config = {
-  matcher: ["/api/posts/:path*"],
+  matcher: ["/api/posts/:path*", "/api/users/:path*"],
 };
