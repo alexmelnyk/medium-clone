@@ -13,15 +13,13 @@ export default async function Profile({ params }) {
     return null;
   }
 
-  const isOwnProfile = session.user.id === user.id;
-
   return (
     <Grid container spacing={2} justifyContent="space-evenly" className={styles.profile}>
       <Grid item xs={7}>
         <ProfileHeader user={user} />
       </Grid>
       <Grid item xs={3}>
-        <SidebarUser user={user} isOwnProfile={isOwnProfile} />
+        <SidebarUser user={user} currentUserId={session.user.id} />
       </Grid>
     </Grid>
   );

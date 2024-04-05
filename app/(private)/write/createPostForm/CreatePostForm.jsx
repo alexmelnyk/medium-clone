@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { SnackbarProvider, enqueueSnackbar } from "notistack";
 import { useRouter } from "next/navigation";
 import FileUpload from "@/app/components/fileUpload/FileUpload";
 import InputBase from "@mui/material/InputBase";
@@ -10,15 +9,8 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import PublishIcon from "@mui/icons-material/Publish";
 import { Editor } from "@tinymce/tinymce-react";
 import { createPost } from "@/services/post";
+import { showSnackBar, SnackbarProvider } from "@/utils/client";
 import styles from "./createPostForm.module.scss";
-
-const showSnackBar = (message, variant) => {
-  enqueueSnackbar(message, {
-    variant,
-    autoHideDuration: 4000,
-    anchorOrigin: { vertical: "top", horizontal: "right" },
-  });
-};
 
 export default function CreatePostForm() {
   const router = useRouter();
