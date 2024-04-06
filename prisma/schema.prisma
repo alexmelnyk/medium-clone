@@ -58,6 +58,7 @@ model User {
   comments      Comment[]
   following     Follow[]  @relation("Following")
   followedBy    Follow[]  @relation("FollowedBy")
+  likes         Like[]
 }
 
 model Post {
@@ -70,6 +71,7 @@ model Post {
   userId     String
   user       User     @relation(fields: [userId], references: [id])
   comments   Comment[]
+  likes      Like[] 
 }
 
 model Comment {
@@ -93,4 +95,15 @@ model Follow {
   following    User      @relation(name: "FollowedBy", fields: [followingId], references: [id])
 
   @@unique([followerId, followingId])
+}
+
+model Like {
+  id      String  @id @default(cuid())
+  postId  String
+  userId  String
+
+  user    User    @relation(fields: [userId], references: [id])
+  post    Post    @relation(fields: [postId], references: [id])  
+
+  @@unique([postId, userId])
 }

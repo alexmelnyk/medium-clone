@@ -32,7 +32,7 @@ export default function PostActions({ postType, post, user }) {
       <div>
         {postType === "full" && (
           <Stack direction="row" spacing={1}>
-            <LikePostAction />
+            <LikePostAction user={user} post={post} />
             <CommentPostAction user={user} post={post} />
           </Stack>
         )}

@@ -44,3 +44,29 @@ export async function createPost(blob, post) {
 
   return await postRes.json();
 }
+
+export async function likePost(postId) {
+  const res = await fetch(`${process.env.BASE_URL || ""}/api/posts/${postId}/likes`, {
+    method: "POST",
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return null;
+  }
+
+  return await res.json();
+}
+
+export async function dislikePost(postId, likeId) {
+  const res = await fetch(`${process.env.BASE_URL || ""}/api/posts/${postId}/likes/${likeId}`, {
+    method: "DELETE",
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return null;
+  }
+
+  return await res.json();
+}
