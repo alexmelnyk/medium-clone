@@ -27,7 +27,7 @@ export async function POST(request, { params }) {
 
       return like;
     });
-    return NextResponse.json({ like }, { status: 200 });
+    return NextResponse.json(like, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
